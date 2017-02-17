@@ -1,0 +1,19 @@
+{
+  "name": "time-cube",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build:live",
+    "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^7.0.5",
+    "nodemon": "^1.11.0",
+    "ts-node": "^2.1.0",
+    "typescript": "^2.1.6"
+  }
+}
