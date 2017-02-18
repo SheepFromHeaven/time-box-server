@@ -1,29 +1,22 @@
-var express = require('express');
-var request = require('request');
-var bodyParser = require('body-parser');
+import { TogglTracker } from './TogglTracker';
 
-var app = express();
+let express = require('express');
+let request = require('request');
+let bodyParser = require('body-parser');
+
+let app = express();
 app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.get('/', function (req, res) {
-  var options = {
-    url: 'http://localhost:3000/post',
-    method: 'POST',
-    json: true,
-    body: {
-      id: 1,
-      name: 'Marc'
-    }
-  }
+let tracker = new TogglTracker('de017ec570aa74d5956c648a9bd202e1');
 
-  request(options, function (error, response, body) {
-    console.log(body);
-  });
+app.post('/start', function(req, res){
+  let projectId = req.body.id;
+  console.log(projectId);
+  tracker.start(projectId);
 });
 
-app.post('/post', function(req, res){
-  console.log(req.body.id);
-  res.send('Hello World!');
+app.post('/stop', function(req, res){
 });
 
 
