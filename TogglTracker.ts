@@ -11,7 +11,8 @@ export class TogglTracker implements ITrackingTool {
     this.client = new TogglClient({apiToken: this.apiToken});
   }
 
-  start(projectId: number): void {
+  start(projectId: number, callback): void {
+    let self = this;
     this.client.startTimeEntry({
       pid: projectId
     }, function(err, timeEntry) {
@@ -19,12 +20,21 @@ export class TogglTracker implements ITrackingTool {
       if(err) {
 
       }
-      this.currentEntryId = timeEntry.id;
-      return 1;
+      else {
+        self.currentEntryId = timeEntry.id;
+        callback();
+      }
     });
   };
 
-  stop(): void {
-    this.client.stopTimeEntry(this.currentEntryId, function(err) {});
+  stop(callback): void {
+    this.client.stopTimeEntry(this.currentEntryId, function(err) {
+      if(err) {
+
+      }
+      else {
+        callback();
+      }
+    });
   }
 }

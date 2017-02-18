@@ -1,3 +1,4 @@
 export interface ITrackingTool {
-  start(projectId: number): void
+  start(projectId: number, callback: any): void,
+  stop(callback: any): void
 }
