@@ -9,16 +9,27 @@ app.use(bodyParser.json()); // support json encoded bodies
 
 let tracker = new TogglTracker('de017ec570aa74d5956c648a9bd202e1');
 
-app.post('/start', function(req, res){
-  let projectId = req.body.id;
-  console.log(projectId);
+app.get('/v1/getcolors', function(req, res){
+
+  res.send('0;192;155;64;24');
+
+});
+
+app.get('/v1/rotate', function(req, res){
+
+  let serial = req.query.serial;
+  let number = req.query.number;
+
+  console.log(number);
+  /*
   tracker.start(projectId, function() {
     res.send('Succes');
   });
-});
+  */
 
-app.post('/stop', function(req, res){
-  tracker.stop(function(){});
+
+  //tracker.stop(function(){});
+  res.send(number);
 });
 
 
