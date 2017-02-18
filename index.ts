@@ -18,7 +18,7 @@ app.post('/start', function(req, res){
 });
 
 app.post('/stop', function(req, res){
-  tracker.stop();
+  tracker.stop(function(){});
 });
 
 
